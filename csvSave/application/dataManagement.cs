@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using csvSave.domain.interfaces;
 
-namespace csvSave
+namespace csvSave.application
 {
     public class dataManagement<T> where T : class
     {
@@ -16,18 +17,18 @@ namespace csvSave
 
         public dataManagement(IdataProcess<T> dataProcess, string filePath)
         {
-            this._dataProcess = dataProcess;
+            _dataProcess = dataProcess;
             _filePath = filePath;
         }
 
         public void processData()
         {
-            _values = _dataProcess.ProcessData(this._filePath);
+            _values = _dataProcess.ProcessData(_filePath);
         }
 
         public void saveData()
         {
-            this._dataProcess.saveData(this._values);
+            _dataProcess.saveData(_values);
         }
 
     }

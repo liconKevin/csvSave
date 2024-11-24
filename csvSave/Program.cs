@@ -1,5 +1,6 @@
-﻿
-using csvSave;
+﻿using csvSave.application;
+using csvSave.application.implementation;
+using csvSave.domain.interfaces;
 using System.Configuration;
 
 string? csvPath = ConfigurationManager.AppSettings["pathFile"];
@@ -22,9 +23,9 @@ else
 void initState(string filePath)
 {
 
-    IdataProcess<string> process = new ImpCsvReader();
+    IdataProcess<ImpPackageData> process = new ImpCsvReader();
 
-    dataManagement<string> dataManagement = new dataManagement<string>(process, filePath);
+    dataManagement<ImpPackageData> dataManagement = new dataManagement<ImpPackageData>(process, filePath);
 
     dataManagement.processData();
 
