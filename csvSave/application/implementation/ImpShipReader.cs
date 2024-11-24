@@ -10,9 +10,14 @@ namespace csvSave.application.implementation
 {
     public class ImpShipReader : IdataProcess<ImpPackageData>
     {
-        static int shipIdentifier = 0;
-        static int shipType = 1;
-        static int weight = 17;
+
+
+        static int shipIdentifierColumn = 0;
+        static int shipTypeColumn = 1;
+        static int weightColumn = 17;
+        static int dateColumn = 8;
+
+        static string targetDate = "2021-06-20";
 
         public List<ImpPackageData> ProcessData(string filePath)
         {
@@ -25,6 +30,8 @@ namespace csvSave.application.implementation
 
                 string[] data;
 
+                string normalDate;
+
                 bool headerLine = true;
 
                 while (!reader.EndOfStream)
@@ -35,10 +42,13 @@ namespace csvSave.application.implementation
                     {
                         data = rawData.Split(',');
 
-                        if (data[8].Substring(0, 10) == "2021-06-20")
+                        normalDate = data[dateColumn].Substring(0, 10);
+
+                        if (normalDate == targetDate)
                         {
-                            result.Add(new ImpPackageData(data[shipIdentifier], data[shipType], data[weight]));
+                            result.Add(new ImpPackageData(data[shipIdentifierColumn], data[shipTypeColumn], data[weightColumn]));
                         }
+
                     }
 
                     headerLine = false;
