@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using csvSave.domain.interfaces;
 
@@ -46,12 +47,15 @@ namespace csvSave.application.implementation
 
         public void saveData(List<ImpPackageData> data)
         {
-            foreach (ImpPackageData item in data)
+
+            foreach (var line in data.GroupBy(identify => identify.getType()).Select(group => new {
+                Metric = group.Key,
+                Count = group.Count()
+            }).OrderBy(x => x.Metric))
             {
-
-                Console.WriteLine(String.Format("Identifier: {0} Type: {1} Weight: {2}", item.getIdentifier(), item.getType(), item.getWeight()));
-
+                Console.WriteLine(" {0} {1}", line.Metric, line.Count);
             }
+
         }
     }
 }
