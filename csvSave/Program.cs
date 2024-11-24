@@ -23,7 +23,7 @@ else
 void initState(string filePath)
 {
 
-    IdataProcess<ImpPackageData> process = new ImpCsvReader();
+    IdataProcess<ImpPackageData> process = new ImpShipReader();
 
     dataManagement<ImpPackageData> dataManagement = new dataManagement<ImpPackageData>(process, filePath);
 

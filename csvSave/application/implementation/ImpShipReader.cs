@@ -8,15 +8,15 @@ using csvSave.domain.interfaces;
 
 namespace csvSave.application.implementation
 {
-    public class ImpCsvReader : IdataProcess<ImpPackageData>
+    public class ImpShipReader : IdataProcess<ImpPackageData>
     {
-
         static int shipIdentifier = 0;
         static int shipType = 1;
         static int weight = 17;
 
         public List<ImpPackageData> ProcessData(string filePath)
         {
+
             List<ImpPackageData> result = new List<ImpPackageData>();
 
             using (var reader = new StreamReader(filePath))
