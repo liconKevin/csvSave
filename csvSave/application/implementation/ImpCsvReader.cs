@@ -10,6 +10,11 @@ namespace csvSave.application.implementation
 {
     public class ImpCsvReader : IdataProcess<ImpPackageData>
     {
+
+        static int shipIdentifier = 0;
+        static int shipType = 1;
+        static int weight = 17;
+
         public List<ImpPackageData> ProcessData(string filePath)
         {
             List<ImpPackageData> result = new List<ImpPackageData>();
@@ -32,7 +37,7 @@ namespace csvSave.application.implementation
 
                         if (data[8].Substring(0, 10) == "2021-06-20")
                         {
-                            result.Add(new ImpPackageData(data[0], data[1], data[17]));
+                            result.Add(new ImpPackageData(data[shipIdentifier], data[shipType], data[weight]));
                         }
                     }
 
